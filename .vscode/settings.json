@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "RSA- Sea City Damage.slnx"
+    "dotnet.defaultSolution": "RSA-Project.slnx"
 }
