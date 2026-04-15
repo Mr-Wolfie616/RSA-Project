@@ -6,7 +6,10 @@ public class GunData : ScriptableObject
     public string gunName;
 
     public float damage;
+    public float bulletsPerTap;
+    public float bulletsFired;
     public float fireRate;
+    public float timeBetweenFiring;
     public float range;
 
     public float reloadTime;

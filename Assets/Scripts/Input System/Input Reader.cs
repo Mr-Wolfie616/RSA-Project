@@ -121,7 +121,7 @@ public class InputReader : MonoBehaviour
 
      private void OnReload(InputAction.CallbackContext ctx)
     {
-        Fire = ctx.ReadValueAsButton();
+        Reload = ctx.ReadValueAsButton();
     }
 
     public void clear()
