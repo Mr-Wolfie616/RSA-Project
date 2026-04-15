@@ -10,6 +10,9 @@ public class InputReader : MonoBehaviour
 
    public bool Crouch {get; private set;}
    public bool Sprint {get; private set;}
+   public bool Aim {get; private set;}
+   public bool Fire {get; private set;}
+   public bool Reload {get; private set;}
 
    private PlayerInput playerInput;
 
@@ -17,6 +20,9 @@ public class InputReader : MonoBehaviour
    private InputAction lookAction;
    private InputAction crouchAction;
    private InputAction sprintAction;
+   private InputAction aimAction;
+   private InputAction fireAction;
+   private InputAction reloadAction;
 
     void Awake()
     {
@@ -28,6 +34,9 @@ public class InputReader : MonoBehaviour
         lookAction = gameplay.FindAction("Look", true);
         crouchAction = gameplay.FindAction("Crouch", true);
         sprintAction = gameplay.FindAction("Sprint", true);
+        aimAction = gameplay.FindAction("Aim", true);
+        fireAction = gameplay.FindAction("Fire", true);
+        reloadAction = gameplay.FindAction("Reload", true);
     }
 
     private void OnEnable()
@@ -45,6 +54,15 @@ public class InputReader : MonoBehaviour
 
         sprintAction.performed += OnSprint;
         sprintAction.canceled += OnSprint;
+
+        aimAction.performed += OnAim;
+        aimAction.canceled += OnAim;
+
+        fireAction.performed += OnFire;
+        fireAction.canceled += OnFire;
+
+        reloadAction.performed += OnReload;
+        reloadAction.canceled += OnReload;
     }
 
     private void OnDisable()
@@ -60,6 +78,15 @@ public class InputReader : MonoBehaviour
 
         sprintAction.performed -= OnSprint;
         sprintAction.canceled -= OnSprint;
+
+        aimAction.performed -= OnAim;
+        aimAction.canceled -= OnAim;
+
+        fireAction.performed -= OnFire;
+        fireAction.canceled -= OnFire;
+
+        reloadAction.performed -= OnReload;
+        reloadAction.canceled -= OnReload;
     }
 
     private void OnMove(InputAction.CallbackContext ctx)
@@ -82,12 +109,30 @@ public class InputReader : MonoBehaviour
         Sprint = ctx.ReadValueAsButton();
     }
 
+    private void OnAim(InputAction.CallbackContext ctx)
+    {
+        Aim = ctx.ReadValueAsButton();
+    }
+
+    private void OnFire(InputAction.CallbackContext ctx)
+    {
+        Fire = ctx.ReadValueAsButton();
+    }
+
+     private void OnReload(InputAction.CallbackContext ctx)
+    {
+        Fire = ctx.ReadValueAsButton();
+    }
+
     public void clear()
     {
         Move = Vector2.zero;
         Look = Vector2.zero;
         Crouch = false;
         Sprint = false;
+        Aim = false;
+        Fire = false;
+        Reload = false;
     }
 
     private void OnGUI()
@@ -112,6 +157,8 @@ public class InputReader : MonoBehaviour
         GUILayout.Label($"Look: {Look}");
         GUILayout.Label($"Crouch: {Crouch}");
         GUILayout.Label($"Sprint: {Sprint}");
+        GUILayout.Label($"Aim: {Aim}");
+        GUILayout.Label($"Fire: {Fire}");
         GUILayout.EndArea();
     }
 }
