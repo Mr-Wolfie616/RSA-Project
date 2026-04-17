@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   gunName: Machine Gun
   damage: 5
+  bulletsPerTap: 1
   fireRate: 2
-  range: 10
+  timeBetweenFiring: 2
+  range: 20
   reloadTime: 6
   magazineSize: 15

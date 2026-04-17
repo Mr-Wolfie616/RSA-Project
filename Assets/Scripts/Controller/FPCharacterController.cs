@@ -83,10 +83,10 @@ public class FPCharacterController : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
         speedDebug = controller.velocity.magnitude;
-        Debug.Log(speedDebug);
+        //Debug.Log(speedDebug);
     }
 
-    void playerRotation()
+     public void playerRotation()
     {
         float mouseY = input.Look.y * lookSensitivity * Time.deltaTime;
         float mouseX = input.Look.x * lookSensitivity * Time.deltaTime;

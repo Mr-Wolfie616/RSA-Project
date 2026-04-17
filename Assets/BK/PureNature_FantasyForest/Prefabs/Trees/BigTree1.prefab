@@ -53,7 +53,7 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7125153096009889805, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 65123883e655447ebd10f67a51a8b583, type: 2}
     - target: {fileID: -6956880131651572705, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
@@ -61,11 +61,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6956880131651572705, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ffdb78f6e04645fc9b21adb538b1dcaa, type: 2}
     - target: {fileID: -6956880131651572705, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 3667aaffb6dd4ee0863913faf15750c6, type: 2}
     - target: {fileID: -5776641062858023674, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
@@ -77,11 +77,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -3149725582862605997, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ffdb78f6e04645fc9b21adb538b1dcaa, type: 2}
     - target: {fileID: -3149725582862605997, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 3667aaffb6dd4ee0863913faf15750c6, type: 2}
     - target: {fileID: -2659551906312505958, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
@@ -109,11 +109,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4190693170935480756, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 3667aaffb6dd4ee0863913faf15750c6, type: 2}
     - target: {fileID: 4190693170935480756, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: ffdb78f6e04645fc9b21adb538b1dcaa, type: 2}
     - target: {fileID: 4742473837712756890, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
@@ -158,5 +158,35 @@ PrefabInstance:
     - {fileID: -4858100160048097080, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3411147804099948299}
   m_SourcePrefab: {fileID: 100100000, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
+--- !u!1 &1448496179955338915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 38df87e73a9f4fcb8712a88ed2f41c45, type: 3}
+  m_PrefabInstance: {fileID: 1791164124725687282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &3411147804099948299
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448496179955338915}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
