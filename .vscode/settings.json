@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Sea-City-Destruction.slnx"
+    "dotnet.defaultSolution": "RSA-Project.slnx"
 }

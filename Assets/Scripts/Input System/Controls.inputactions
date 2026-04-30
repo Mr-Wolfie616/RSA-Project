@@ -30,7 +30,7 @@
                     "id": "ec0f44bf-5e68-4d91-92e9-848737a436de",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "Hold(duration=0.0001)",
                     "initialStateCheck": false
                 },
                 {
@@ -39,7 +39,7 @@
                     "id": "5d2bac4c-7229-46bd-82f3-397de49ff974",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "Hold(duration=0.0001)",
                     "initialStateCheck": false
                 },
                 {
@@ -64,6 +64,15 @@
                     "name": "Reload",
                     "type": "Button",
                     "id": "edf660c2-a2a4-4e43-8e6d-215aae0f1895",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "85fbe30a-454e-4764-861a-91b77c4366f6",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -189,6 +198,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ee9bf57-0e9a-4d81-bda6-367046beca96",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
