@@ -49,7 +49,7 @@ public class FPCharacterController : MonoBehaviour
 
     private void Update()
     {
-        isGrounded = controller.isGrounded;
+        isGrounded = Physics.Raycast(groundCheck.position,Vector3.down,groundDistance,groundLayer);
         if(isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
@@ -63,7 +63,7 @@ public class FPCharacterController : MonoBehaviour
 
         Vector3 finalMove = moveVelocity * Time.deltaTime + velocity * Time.deltaTime;
         controller.Move(finalMove);
-        Debug.Log(velocity.y);
+       // Debug.Log(velocity.y);
     }
 
     void Moveplayer()
@@ -131,5 +131,14 @@ public class FPCharacterController : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+    }
+
+    private void OawGizmosSelected()
+    {
+        if (groundCheck == null) return;
+
+        Gizmos.color = Color.crimson;
+
+        Gizmos.DrawLine(groundCheck.position,groundCheck.position + Vector3.down * groundDistance);       
     }
 }

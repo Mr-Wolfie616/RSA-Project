@@ -24,6 +24,7 @@ public class Gun : MonoBehaviour
     private void Update()
     {
         InputHandler();
+        Debug.DrawLine(playerCam.transform.position,playerCam.transform.position + playerCam.transform.forward * gunData.range, Color.red);
     }
 
     private void InputHandler()
@@ -44,12 +45,12 @@ public class Gun : MonoBehaviour
     {
        readyToFire = false; 
 
-       if(Physics.Raycast(playerCam.transform.position,playerCam.transform.TransformDirection(Vector3.forward), out rayHit, gunData.range))
+       if(Physics.Raycast(playerCam.transform.position,playerCam.transform.forward, out rayHit, gunData.range))
         {
             Debug.Log(rayHit.collider.name);
 
             rayHit.collider.TryGetComponent<IDamageable>(out var damageable);
-            damageable?.TakeDamage();
+            damageable?.TakeDamage(gunData.damage);
         }
 
         currentAmmo --;
