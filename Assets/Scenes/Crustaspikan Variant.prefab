@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crustaspikan Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8242524897486012024, guid: fbb55bcc82c6e1046be467f680b258ec, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 790638cf618e3fd47a6dc99fe9613615, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -75,6 +79,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3443187462698630840, guid: fbb55bcc82c6e1046be467f680b258ec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2695455954454071598}
+    - targetCorrespondingSourceObject: {fileID: 3443187462698630840, guid: fbb55bcc82c6e1046be467f680b258ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6631758364691861468}
     - targetCorrespondingSourceObject: {fileID: 1984954485357028114, guid: fbb55bcc82c6e1046be467f680b258ec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9120958082198532824}
@@ -123,3 +130,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd8244fe72cf50418279bccbeffa36b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::monsterdeath
+  Mhealth: 25
+--- !u!195 &6631758364691861468
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4411625430375452104}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0.2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
