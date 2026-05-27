@@ -12,7 +12,7 @@ public class FPCharacterController : MonoBehaviour
     private float speedDebug = 0f;
 
     [Header("Camera")]
-    [SerializeField] private float lookSensitivity = 2f;
+    [SerializeField] private float lookSensitivity = 5f;
     [SerializeField] private Transform CameraTransform;
     [SerializeField] private float xRotation;
 

@@ -524,6 +524,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4411625430375452104, guid: 61d7e28615c8d7d45b7dd14da45cce18, type: 3}
   m_PrefabInstance: {fileID: 3268101553208264743}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &810740246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810740245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d4f757d6e33a8478a9f3432d1cae1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterMovement
+  wanderRadius: 10
+  waitTime: 2
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2070,11 +2084,14 @@ PrefabInstance:
     - target: {fileID: 6958837183903321352, guid: 61d7e28615c8d7d45b7dd14da45cce18, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 790638cf618e3fd47a6dc99fe9613615, type: 2}
+      objectReference: {fileID: 9100000, guid: d648f11e5b9df924e99f1d807e073799, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4411625430375452104, guid: 61d7e28615c8d7d45b7dd14da45cce18, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 810740246}
   m_SourcePrefab: {fileID: 100100000, guid: 61d7e28615c8d7d45b7dd14da45cce18, type: 3}
 --- !u!1001 &3500408617423620579
 PrefabInstance:
