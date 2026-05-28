@@ -35,6 +35,12 @@ The prototype was developed individually over a twelve-week production period us
 
 One of the best technical areas of the project was the player movement system. During development I transitioned from a basic first-person movement controller into a modular state-machine-based architecture like professional gameplay programming.
 
+## Figure 1. Final Gameplay Environment
+
+![Gameplay Screenshot](Images/Scene_View.png)
+
+*Source: Own screenshot of Playscene, 2026.*
+
 ---
 
 # 2. Research & Preproduction
