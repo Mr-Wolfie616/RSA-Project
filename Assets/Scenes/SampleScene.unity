@@ -934,7 +934,7 @@ GameObject:
   - component: {fileID: 1298401053}
   - component: {fileID: 1298401052}
   m_Layer: 0
-  m_Name: NavMshAra
+  m_Name: NavMeshArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

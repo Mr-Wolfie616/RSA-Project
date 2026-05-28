@@ -15,8 +15,8 @@ MonoBehaviour:
   gunName: Machine Gun
   damage: 5
   bulletsPerTap: 1
-  fireRate: 2
-  timeBetweenFiring: 2
+  fireRate: 1
+  timeBetweenFiring: 1
   range: 20
-  reloadTime: 6
+  reloadTime: 3
   magazineSize: 15
