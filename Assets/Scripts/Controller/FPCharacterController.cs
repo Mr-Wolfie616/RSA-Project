@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(InputReader))]
 public class FPCharacterController : MonoBehaviour
@@ -8,9 +9,7 @@ public class FPCharacterController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sprintSpeed = 10f;
     [SerializeField] private float backwardSpeed = 2.5f;
-    Vector3 moveVelocity;
-    private float speedDebug = 0f;
-
+    
     [Header("Camera")]
     [SerializeField] private float lookSensitivity = 5f;
     [SerializeField] private Transform CameraTransform;
@@ -18,21 +17,24 @@ public class FPCharacterController : MonoBehaviour
 
     [Header("Crouch")]
     [SerializeField] private float crouchSpeed = 2f;
-    [SerializeField] private Transform player;
     [SerializeField] private Vector3 crouchScale = new Vector3 (0.5f, 0.5f, 0.5f);
+    private Vector3 standardScale = Vector3.one;
 
     [Header("Jump")]
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float gravity = -9.81f;
-    [SerializeField] Transform groundCheck;
+    [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.3f;
-    [SerializeField] LayerMask groundLayer;
+    [SerializeField] private LayerMask groundLayer;
 
     Vector3 velocity;
+    Vector3 moveVelocity;
     private bool isGrounded; 
-    private Vector3 standardScale = new Vector3 (1f, 1f, 1f);
+
     private CharacterController controller;
     private InputReader input;
+
+    private Playerstate currentState;
 
     private void Awake()
     {
@@ -47,70 +49,57 @@ public class FPCharacterController : MonoBehaviour
         Cursor.visible = false;
     }
 
+    private void Start()
+    {
+        ChangeState(new IdleState(this));
+    }
+
     private void Update()
     {
-        isGrounded = Physics.Raycast(groundCheck.position,Vector3.down,groundDistance,groundLayer);
+        GroundCheck();
+        Jump();
+        playerRotation();
+
+        currentState.Update();
+
+        Gravity();
+        Move();
+    }
+
+    public void ChangeState(Playerstate newState)
+    {
+        currentState?.Exit();
+        currentState = newState;
+        currentState.Enter();
+    }
+
+    private void GroundCheck()
+    {
+         isGrounded = Physics.Raycast(groundCheck.position,Vector3.down,groundDistance,groundLayer);
         if(isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
-
-        Jump();
-        Moveplayer();
-        playerRotation();
-
-        velocity.y += gravity * Time.deltaTime;
-
-        Vector3 finalMove = moveVelocity * Time.deltaTime + velocity * Time.deltaTime;
-        controller.Move(finalMove);
-       // Debug.Log(velocity.y);
     }
 
-    void Moveplayer()
+     public void Jump()
     {
-        float currentSpeed;
-
-        if(input.Move.y < 0)
+        if(input.Jump && isGrounded)
         {
-            currentSpeed = backwardSpeed;
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            ChangeState(new JumpState(this));
         }
-        else if (input.Move.y > 0.1f && input.Sprint)
-        {
-            currentSpeed = sprintSpeed;
-        }
-        else if (input.Move.y > 0.1f && input.Crouch)
-        {
-            currentSpeed = crouchSpeed;
-        }
-        else
-        {
-            currentSpeed = moveSpeed;
-        }
+    }
 
-        if (input.Crouch)
-        {
-            transform.localScale = crouchScale;
-        }
-        else
-        {
-            transform.localScale = standardScale;
-        }
+    private void Gravity()
+    {
+         velocity.y += gravity * Time.deltaTime;
+    }
 
-        Vector3 Forward = CameraTransform.forward;
-        Vector3 Right = CameraTransform.right;
-
-        Forward.y = 0f;
-        Right.y = 0f;
-
-        Forward.Normalize();
-        Right.Normalize();
-
-
-        Vector3 moveDir = (Forward * input.Move.y + Right * input.Move.x).normalized;
-
-        moveVelocity = moveDir * currentSpeed;
-        speedDebug = controller.velocity.magnitude;
-        //Debug.Log(speedDebug);
+    private void Move()
+    {
+        Vector3 finalMove = moveVelocity * Time.deltaTime + velocity * Time.deltaTime;
+        controller.Move(finalMove);
     }
 
      public void playerRotation()
@@ -125,20 +114,38 @@ public class FPCharacterController : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
     }
 
-    public void Jump()
+    public void SetMovement(float speed)
     {
-        if(input.Jump && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+        Vector3 Forward = CameraTransform.forward;
+        Vector3 Right = CameraTransform.right;
+
+        Forward.y = 0f;
+        Right.y = 0f;
+
+        Forward.Normalize();
+        Right.Normalize();
+
+
+        Vector3 moveDir = (Forward * input.Move.y + Right * input.Move.x).normalized;
+
+        moveVelocity = moveDir * speed;
     }
 
-    private void OawGizmosSelected()
+    public void SetStanding()
     {
-        if (groundCheck == null) return;
-
-        Gizmos.color = Color.crimson;
-
-        Gizmos.DrawLine(groundCheck.position,groundCheck.position + Vector3.down * groundDistance);       
+        transform.localScale = standardScale;
     }
+
+    public void SetCrouching()
+    {
+        transform.localScale = crouchScale;
+    }
+
+    public bool IsGrounded => isGrounded;
+    public InputReader Input => input;
+
+    public float MoveSpeed => moveSpeed;
+    public float SprintSpeed => sprintSpeed;
+    public float BackwardSpeed => backwardSpeed;
+    public float CrouchSpeed => crouchSpeed;
 }

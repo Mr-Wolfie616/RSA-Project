@@ -3,9 +3,9 @@ using UnityEngine.AI;
 
 public class MonsterMovement : MonoBehaviour
 {
+    private MonsterDeath MDeath;
     public float wanderRadius = 10f;
     public float waitTime = 2f;
-
     private NavMeshAgent agent;
     private Animator anim;
     private int currentIdle;
@@ -13,6 +13,7 @@ public class MonsterMovement : MonoBehaviour
 
     private void Awake()
     {
+        MDeath = GetComponent<MonsterDeath>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
     }
@@ -24,6 +25,12 @@ public class MonsterMovement : MonoBehaviour
 
     private void Update()
     {
+        if(MDeath.IsDead)
+        {
+           anim.SetFloat("Speed", 0f);
+           return;
+        }
+        
         anim.SetFloat("Speed", agent.velocity.magnitude);
 
         if(!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
@@ -50,12 +57,12 @@ public class MonsterMovement : MonoBehaviour
 
     private void PickNewDestination()
     {
-        Vector3 randomDirection = Random.insideUnitSphere*wanderRadius;
-        randomDirection += transform.position;
+            Vector3 randomDirection = Random.insideUnitSphere*wanderRadius;
+            randomDirection += transform.position;
 
-        if(NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, wanderRadius, NavMesh.AllAreas))
-        {
-            agent.SetDestination(hit.position);
-        }
+            if(NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, wanderRadius, NavMesh.AllAreas))
+            {
+                agent.SetDestination(hit.position);
+            }
     }
 }

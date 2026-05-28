@@ -1,83 +1,117 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Gun : MonoBehaviour
 {
+    public enum GunState
+    {
+        Idle,
+        Firing,
+        Reloading
+    }
+
+    [Header("Reference")]
     public InputReader input;
     public GunData gunData;
+    public Camera playerCam;
+
+    [Header("GunInfo")]
+    public GunState currentState;
     public float bulletsFired;
     public float currentAmmo;
-    public bool shooting;
-    public bool readyToFire;
-    public bool reloading;
 
-    public Camera playerCam;
+    
     public RaycastHit rayHit;
 
     private void Awake()
     {
         input = FindAnyObjectByType<InputReader>();
         currentAmmo = gunData.magazineSize;
-        readyToFire = true;
+
+        ChangeState(GunState.Idle);
     }
 
     private void Update()
     {
-        InputHandler();
+        Input();
+
         Debug.DrawLine(playerCam.transform.position,playerCam.transform.position + playerCam.transform.forward * gunData.range, Color.red);
     }
 
-    private void InputHandler()
+    private void Input()
     {
-        shooting = input.Fire;
-
-        if (input.Reload && currentAmmo < gunData.magazineSize && !reloading)
-        Reload();
-
-        if(readyToFire && shooting && !reloading && currentAmmo > 0)
+        if (input.Reload && currentAmmo < gunData.magazineSize)
         {
-            bulletsFired = gunData.bulletsPerTap;
-            Shoot();
+            TryReload();
+            return;
+        }
+
+        if(input.Fire)
+        {
+            TryShoot();
         }
     }
 
-    public void Shoot()
+    public void TryShoot()
     {
-       readyToFire = false; 
+       if(currentState != GunState.Idle) return;
+       if(currentAmmo <= 0) return;
 
-       if(Physics.Raycast(playerCam.transform.position,playerCam.transform.forward, out rayHit, gunData.range))
+       StartCoroutine(FireRoutine());
+    }
+
+    public void TryReload()
+    {
+        if(currentState == GunState.Reloading) return;
+        if(currentAmmo >= gunData.magazineSize) return;
+
+        StartCoroutine(ReloadRoutine());
+    }
+
+    private IEnumerator FireRoutine()
+    {
+        ChangeState(GunState.Firing);
+
+        bulletsFired = gunData.bulletsPerTap;
+
+        while (bulletsFired > 0 && currentAmmo > 0)
         {
-            Debug.Log(rayHit.collider.name);
+            Shoot();
 
+            bulletsFired--;
+
+            yield return new WaitForSeconds(gunData.fireRate);
+        }
+
+        yield return new WaitForSeconds(gunData.timeBetweenFiring);
+        ChangeState(GunState.Idle);
+    }
+
+    private void Shoot()
+    {
+        if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out rayHit, gunData.range))
+        {
             rayHit.collider.TryGetComponent<IDamageable>(out var damageable);
             damageable?.TakeDamage(gunData.damage);
         }
 
-        currentAmmo --;
-        bulletsFired --;
-
-        Invoke ("ResetFire", gunData.timeBetweenFiring);
-
-        if (bulletsFired > 0 && currentAmmo > 0)
-        Invoke ("Shoot", gunData.fireRate );
+        currentAmmo--;
     }
 
-    void ResetFire()
+    private IEnumerator ReloadRoutine()
     {
-        readyToFire = true;
-    }
+        ChangeState(GunState.Reloading);
 
-    public void Reload()
-    {
-        reloading = true;
-        Invoke ("ReloadFinish", gunData.reloadTime);
-        Debug.Log("Reload");
-    }
-
-    void ReloadFinish()
-    {
+        yield return new WaitForSeconds(gunData.reloadTime);
         currentAmmo = gunData.magazineSize;
-        reloading = false;
+
+        ChangeState(GunState.Idle);
+    }
+
+    private void ChangeState(GunState newState)
+    {
+        currentState = newState;
     }
 }
 
