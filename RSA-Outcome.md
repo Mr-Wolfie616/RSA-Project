@@ -121,6 +121,12 @@ public override void Update()
 
 Another important part of preproduction involved identifying technical risks early. One challenge I had during early controller implementation involved gravity and jumping systems. To begin with jumping mechanics failed due to gravity being accidentally assigned a positive value rather than a negative value.
 
+## Figure 4. Gravity Inversion
+
+![Gravity Inspector](Images/Grav_Mistake.png)
+
+*Source: Own Screenshot From PlayScene, 2026*
+
 Planning during preproduction remained small compared to previous projects because this assignment was mainly used to continue improving my programming skills and independent workflow management. Rather than using detailed production schedules, I created smaller lists of key gameplay systems and prioritised completing one feature at a time. GitHub was used throughout development to document progression and maintain version control across both my home computer and university laptop.
 
 Development of the prototype was made using Unity 6.3 LTS alongside Visual Studio and GitHub version control. The project followed an iterative workflow where gameplay systems were first prototyped quickly before later refinement and restructuring. This approach followed common industry development practices where functionality is often prioritised during early production before later focusing on optimisation, scalability and polish.
