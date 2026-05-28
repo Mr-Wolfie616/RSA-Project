@@ -65,7 +65,59 @@ Early planning focused on identifying a realistic gameplay loop that could suppo
 
 One of the first technical systems created during preproduction was the first-person movement controller. To begin with the controller was built using a single script handling sprinting, crouching, jumping and camera rotation. This version was designed to prioritise rapid prototyping and gameplay testing rather than long-term scalability. However, as development progressed and additional systems were introduced, I began restructuring the controller into a modular state-machine architecture like industry standard gameplay programming practices.
 
+## Figure 2. Original Player Controller
+
+'''
+if(input.Move.y < 0)
+        {
+            currentSpeed = backwardSpeed;
+        }
+        else if (input.Move.y > 0.1f && input.Sprint)
+        {
+            currentSpeed = sprintSpeed;
+        }
+        else if (input.Move.y > 0.1f && input.Crouch)
+        {
+            currentSpeed = crouchSpeed;
+        }
+        else
+        {
+            currentSpeed = moveSpeed;
+        }
+'''
+
+*Source: Code from visual studio, 2026.*
+
 Developing the movement state machine became one of the most enjoyable parts of the project because I had never implemented one before. Learning how to separate movement systems into independent states improved both my understanding of scalable programming and the organisation of gameplay systems. It also showed how breaking code into smaller systems improves debugging and future iteration.
+
+## Figure 3. State Machine System
+
+'''
+public override void Update()
+    {
+        player.SetMovement(0f);
+
+        if (!player.IsGrounded)
+        {
+            player.ChangeState(new JumpState(player));
+            return;
+        }
+
+        if (player.Input.Crouch)
+        {
+            player.ChangeState(new CrouchState(player));
+            return;
+        }
+
+        if (player.Input.Move.y < 0)
+        {
+            player.ChangeState(new BackwardState(player));
+            return;
+        }
+    }
+'''
+
+*Source: Code from Visual studio, 2026*
 
 Another important part of preproduction involved identifying technical risks early. One challenge I had during early controller implementation involved gravity and jumping systems. To begin with jumping mechanics failed due to gravity being accidentally assigned a positive value rather than a negative value.
 
