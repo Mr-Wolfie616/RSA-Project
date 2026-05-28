@@ -67,7 +67,7 @@ One of the first technical systems created during preproduction was the first-pe
 
 ## Figure 2. Original Player Controller
 
-```Monokai Dimmed
+```Monokai_Dimmed
 if(input.Move.y < 0)
         {
             currentSpeed = backwardSpeed;
@@ -92,7 +92,7 @@ Developing the movement state machine became one of the most enjoyable parts of 
 
 ## Figure 3. State Machine System
 
-```Monokai Dimmed
+```Monokai_Dimmed
 public override void Update()
     {
         player.SetMovement(0f);
