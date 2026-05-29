@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    void Awake()
+    void Start()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
     public void PlayGame()
     {
+        Debug.Log("Start");
         SceneManager.LoadScene(1);
     }
     

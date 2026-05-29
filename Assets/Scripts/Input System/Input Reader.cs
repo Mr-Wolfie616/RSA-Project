@@ -45,6 +45,11 @@ public class InputReader : MonoBehaviour
         pauseAction = gameplay.FindAction("Pause", true);
     }
 
+    private void LateUpdate()
+    {
+        pausePressed = false;
+    }
+
     private void OnEnable()
     {
         playerInput.actions.FindActionMap("Gameplay", true).Enable();

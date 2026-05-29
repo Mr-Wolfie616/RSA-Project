@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class MonsterDeath : MonoBehaviour, IDamageable
 {
@@ -40,5 +42,13 @@ public class MonsterDeath : MonoBehaviour, IDamageable
 
         anim.SetFloat("Speed", 0f);
         anim.SetBool("IsDead", true);
+
+        StartCoroutine(WaitRoutine());
+    }
+
+    IEnumerator WaitRoutine()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(2);
     }
 }
