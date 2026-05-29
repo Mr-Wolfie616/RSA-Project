@@ -14,6 +14,7 @@ public class InputReader : MonoBehaviour
    public bool Aim {get; private set;}
    public bool Fire {get; private set;}
    public bool Reload {get; private set;}
+   public bool pausePressed {get; private set;}
 
    private PlayerInput playerInput;
 
@@ -25,6 +26,7 @@ public class InputReader : MonoBehaviour
    private InputAction aimAction;
    private InputAction fireAction;
    private InputAction reloadAction;
+   private InputAction pauseAction;
 
     void Awake()
     {
@@ -40,6 +42,7 @@ public class InputReader : MonoBehaviour
         aimAction = gameplay.FindAction("Aim", true);
         fireAction = gameplay.FindAction("Fire", true);
         reloadAction = gameplay.FindAction("Reload", true);
+        pauseAction = gameplay.FindAction("Pause", true);
     }
 
     private void OnEnable()
@@ -69,6 +72,8 @@ public class InputReader : MonoBehaviour
 
         reloadAction.performed += OnReload;
         reloadAction.canceled += OnReload;
+
+        pauseAction.performed += OnPause;
     }
 
     private void OnDisable()
@@ -96,6 +101,8 @@ public class InputReader : MonoBehaviour
 
         reloadAction.performed -= OnReload;
         reloadAction.canceled -= OnReload;
+
+        pauseAction.performed -= OnPause;
     }
 
     private void OnMove(InputAction.CallbackContext ctx)
@@ -137,6 +144,12 @@ public class InputReader : MonoBehaviour
     {
         Reload = ctx.ReadValueAsButton();
     }
+
+    private void OnPause(InputAction.CallbackContext ctx)
+    {
+        pausePressed = true;
+    }
+
 
     public void clear()
     {
