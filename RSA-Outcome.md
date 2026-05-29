@@ -163,15 +163,7 @@ Enemy functionality and monster animation systems also showed technical learning
 
 ## Figure 8. Creature animation and movement 
 
-<iframe
-  width="640"
-  height="480"
-  src="https://youtu.be/54p70t5DkOU"
-  frameborder="0"
-  allow="autoplay; encrypted-media"
-  allowfullscreen
->
-</iframe>
+[![Creature Movement](https://img.youtube.com/vi/54p70t5DkOU/maxresdefault.jpg)](https://youtu.be/54p70t5DkOU)
 
 *Source: Own Video from Unity, 2026*
 
