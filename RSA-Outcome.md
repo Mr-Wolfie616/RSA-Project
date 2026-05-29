@@ -318,6 +318,8 @@ Rifle HK416 - Free (2022) @UnityAssetStore. Unity Asset Store Available at: http
 
 Unity Asset Store - The Best Assets for Game Making (n.d.) Assetstore.unity.com. Available at: https://assetstore.unity.com.
 
+Wootton, K. (2026) Slacker And Red Rat Client Project Reflective Report. Hollowwolf.co.uk. Available at: https://hollowwolf.co.uk/client_project_report.html. [Accessed 29 May 2026].
+
 ---
 
 # 9. Appendices
