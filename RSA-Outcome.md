@@ -171,6 +171,12 @@ The monster animation system also required technical adjustments because several
 
 Environmental development focused on atmosphere and environmental storytelling using third-party assets. I was responsible for the environmental layout and terrain construction through the prototype. The game environment began feeling more complete once both the player and enemy systems were functioning correctly inside the playable scene.
 
+## Figure 9. Terrian Tool
+
+![Terrain Tool](Images/Terrain_Tool.png)
+
+*Source: Own screenshot from Unity, 2026*
+
 Throughout development GitHub version control was used to manage workflow and progression. GitHub allowed development to continue across both my home desktop computer and university laptop while also providing a clear record of iteration throughout production. Commit logs documented major technical changes including controller redesigns, animation implementation, environment updates and gameplay system iteration.
 
 One of the production challenges involved balancing development time against personal health issues and the workload demands of another large group project being completed simultaneously. Due to these limitations, several planned features were removed or reduced in scope during later production stages. Planned systems originally included a more advanced combat AI, multiple enemy encounters, additional weapon types, environmental creature behaviour, voice acted narration, larger exploration areas and ambient wildlife systems.
@@ -183,7 +189,13 @@ Although these features were removed due to time and scope limitations reducing 
 
 Feedback was mainly gathered informally from peers, tutor and previous experiences from earlier university projects. Due to personal health issues and the workload demands of another group project, playtesting opportunities became limited during later development stages. The prototype was also not fully ready in time for Code and Canvas which lessened opportunities for wider public testing and external feedback.
 
-Despite these limitations feedback gathered during earlier development stages still helped gameplay systems particularly the player controller. Much of the movement feedback came from testing previous projects where similar first-person movement systems had been implemented, this can be seen on my group project called Quebec Underground. Earlier testing found that movement speed felt too fast and reduced gameplay tension because players could move through environments too quickly without properly engaging with the atmosphere or environmental detail. To improve this the movement speeds were reduced to encourage slower exploration and create a more cautious gameplay pace.
+Despite these limitations feedback gathered during earlier development stages still helped gameplay systems particularly the player controller. Much of the movement feedback came from testing previous projects where similar first person movement systems had been implemented, this can be seen on my group project called [Quebec Underground](https://hollowwolf.co.uk/client_project_report.html). Earlier testing found that movement speed felt too fast and reduced gameplay tension because players could move through environments too quickly without properly engaging with the atmosphere or environmental detail. To improve this the movement speeds were reduced to encourage slower exploration and create a more cautious gameplay pace.
+
+## Figure 10. Player Movement
+
+[![Enemy AI Development Video](https://img.youtube.com/vi/lwCh_zujytY/0.jpg)](https://youtu.be/lwCh_zujytY)
+
+*Source: Own video from Unity, 2026*
 
 The crouch system was also iterated on based on player feedback. Early versions of the crouch mechanic did not reduce player height enough which made gameplay feel visually unclear and less immersive. To improve this crouch scaling values were adjusted to make the player physically lower within the environment, improving both visual feedback and gameplay readability.
 
@@ -193,13 +205,48 @@ The enemy AI systems also underwent iteration throughout production. The monster
 
 The weapon system similarly changed throughout production. Early prototypes focused mainly on achieving functional shooting mechanics before later adding state handling, coroutines and Scriptable Object support. Structuring the weapon system using Scriptable Objects improved scalability and would have allowed additional weapons to be added more easily if development had continued further.
 
+## Figure 11. Updated Gun Scripted
+
+```
+ private void Awake()
+    {
+        input = FindAnyObjectByType<InputReader>();
+        currentAmmo = gunData.magazineSize;
+
+        ChangeState(GunState.Idle);
+    }
+
+    private void Update()
+    {
+        Input();
+
+        Debug.DrawLine(playerCam.transform.position,playerCam.transform.position + playerCam.transform.forward * gunData.range, Color.red);
+    }
+
+    private void Input()
+    {
+        if (input.Reload && currentAmmo < gunData.magazineSize)
+        {
+            TryReload();
+            return;
+        }
+
+        if(input.Fire)
+        {
+            TryShoot();
+        }
+    }
+```
+
+*Source: Own code from visual studio, 2026*
+
 Due to time and scope limitations, several planned gameplay systems were never fully implemented. Although these systems were removed from production reducing the scope helped prioritise the completion of core gameplay systems and environmental storytelling. This showed the importance of realistic production planning and iterative scope management during solo game development.
 
 ---
 
 # 5. Reflection
 
-Overall, the project achieved many of its original thematic goals despite several technical and production limitations. One part of the final prototype was its ability to communicate environmental themes through atmosphere, exploration and narrative discovery rather than relying heavily on direct exposition or written explanation. The project encouraged players to gradually question their assumptions about the world and the creature they were hunting which aligned with the RSA brief about positive social reflection through immersive experiences.
+Overall, the project achieved many of its original thematic goals despite several technical and production limitations. One part of the final prototype was its ability to communicate environmental themes through atmosphere, exploration and narrative rather than relying on direct explaination or written explanation. The project encouraged players to gradually question their assumptions about the world and the creature they were hunting which aligned with the RSA brief about positive social reflection through immersive experiences.
 
 One of the main emotional goals of the project was creating feelings of guilt, betrayal and uncertainty once the player discovered humanity was responsible for the destruction of the environment rather than the creature itself. I wanted players to question the information they had been given throughout the game and reflect on how fear and misinformation can influence attitudes towards nature and wildlife. This idea was affected by my own feelings for animals and natural environments, as well as concerns surrounding humanity’s exploitation of ecosystems for resources and expansion.
 
@@ -207,11 +254,17 @@ The environmental storytelling approach also helped reinforce Sustainable Develo
 
 The gun and animation systems also showed my technical growth throughout development because I had never independently implemented these systems before. Developing these mechanics improved my confidence with gameplay scripting, animation implementation and gameplay state management. Although both systems remained simple in their final form, they helped the gameplay experience and thematic atmosphere of the prototype.
 
-However, the project also had several weaknesses throughout production. Due to time limitations, health issues and the workload demand of another major university project many features were removed or simplified during later production stages. While this reduced the overall scale of the final prototype it also improved my understanding of realistic production management and the importance of prioritising core systems over feature expansion during solo development.
+However, the project also had weaknesses throughout production. Due to time limitations, health issues and the workload demand of another major university project many features were removed or simplified during later production stages. While this reduced the overall scale of the final prototype it also improved my understanding of realistic production management and the importance of prioritising core systems over feature expansion during solo development.
 
 The project also lacked wider playtesting opportunities due to the prototype not being fully prepared in time for Code and Canvas. Feedback mainly came from smaller peer discussions and earlier gameplay testing rather than large scale public testing. This limited the amount of external feedback available for balancing and user experience refinement during later development stages.
 
 GitHub commit history showed consistent progression and experimentation across gameplay systems, controller redesigns and environmental development. The project also showed the importance of modular workflows, realistic scoping and iterative problem solving during independent game development.
+
+## Figure 12. Github Commits
+
+![Github Commit Description](Images/Push_Example.png)
+
+*Source: Own screenshot from Github, 2026*
 
 ---
 
@@ -249,7 +302,7 @@ The final prototype showed the emotional and environmental themes originally int
 
 Clayton, S. (2020) Climate anxiety: Psychological responses to climate change. Journal of Anxiety Disorders.
 
-GitHub (2026) GitHub Documentation. Available at: https://github.com/ (Accessed: 28 May 2026).
+GitHub (2026) GitHub Documentation. Available at: https://github.com/Mr-Wolfie616 (Accessed: 28 May 2026).
 
 Unity Technologies (2026) Unity Documentation. Available at: https://docs.unity3d.com/ (Accessed: 28 May 2026).
 
@@ -257,26 +310,265 @@ United Nations (2023) Sustainable Development Goal 11: Sustainable Cities and Co
 
 Wootton, K. (2026) RSA Project Development Video. YouTube. Available at: https://www.youtube.com/watch?v=fGbOGE2m2HE&t=105s (Accessed: 28 May 2026).
 
+MONSTER FULL PACK VOL 2 (2023) @UnityAssetStore. Unity Asset Store Available at: https://assetstore.unity.com/packages/3d/characters/creatures/monster-full-pack-vol-2-238395. [Accessed 29 May 2026].
+
+Pure Nature 2 : Fantasy Forest (2025) @UnityAssetStore. Unity Asset Store Available at: https://assetstore.unity.com/packages/3d/environments/pure-nature-2-fantasy-forest-282665. [Accessed 29 May 2026].
+
+Rifle HK416 - Free (2022) @UnityAssetStore. Unity Asset Store Available at: https://assetstore.unity.com/packages/3d/props/guns/rifle-hk416-free-351370. [Accessed 29 May 2026].
+
+Unity Asset Store - The Best Assets for Game Making (n.d.) Assetstore.unity.com. Available at: https://assetstore.unity.com.
+
 ---
 
 # 9. Appendices
 
-## Appendix A – Early Movement Controller
+---
 
-![Movement Controller](images/movementcontroller.png)
+# Appendix A – Final Gameplay Environment
 
-## Appendix B – State Machine Structure
+This appendix contains a screenshot of the final playable forest environment used within the prototype.
 
-![State Machine](images/statemachine.png)
+## Figure 1. Final Gameplay Environment
 
-## Appendix C – Environment Development
+![Gameplay Screenshot](Images/Scene_View.png)
 
-![Environment](images/environment.png)
+*Source: Own screenshot of Playscene, 2026.*
 
-## Appendix D – GitHub Commit History
+Referenced in:
+- Section 1 – Introduction
 
-![GitHub](images/githubcommits.png)
+---
 
-## Appendix E – Enemy AI Development
+# Appendix B – Original Player Controller
 
-![Enemy AI](images/enemyai.png)
+This appendix shows the original first-person movement controller before transitioning to a modular state-machine structure.
+
+## Figure 2. Original Player Controller
+
+```c#
+if(input.Move.y < 0)
+        {
+            currentSpeed = backwardSpeed;
+        }
+        else if (input.Move.y > 0.1f && input.Sprint)
+        {
+            currentSpeed = sprintSpeed;
+        }
+        else if (input.Move.y > 0.1f && input.Crouch)
+        {
+            currentSpeed = crouchSpeed;
+        }
+        else
+        {
+            currentSpeed = moveSpeed;
+        }
+```
+
+*Source: Code from Visual Studio, 2026.*
+
+Referenced in:
+- Section 3 – Development Process
+
+---
+
+# Appendix C – State Machine System
+
+This appendix shows the modular state-machine structure used to improve gameplay programming organisation and scalability.
+
+## Figure 3. State Machine System
+
+```c#
+public override void Update()
+    {
+        player.SetMovement(0f);
+
+        if (!player.IsGrounded)
+        {
+            player.ChangeState(new JumpState(player));
+            return;
+        }
+
+        if (player.Input.Crouch)
+        {
+            player.ChangeState(new CrouchState(player));
+            return;
+        }
+
+        if (player.Input.Move.y < 0)
+        {
+            player.ChangeState(new BackwardState(player));
+            return;
+        }
+    }
+```
+
+*Source: Code from Visual Studio, 2026.*
+
+Referenced in:
+- Section 3 – Development Process
+
+---
+
+# Appendix D – Gravity Debugging
+
+This appendix contains a screenshot of the gravity inversion issue that caused the jump mechanic to fail during early development.
+
+## Figure 4. Gravity Inversion
+
+![Gravity Inspector](Images/Grav_Mistake.png)
+
+*Source: Own Screenshot From PlayScene, 2026.*
+
+Referenced in:
+- Section 3 – Development Process
+
+---
+
+# Appendix E – GitHub Version Control
+
+This appendix shows GitHub Desktop commit history used to manage version control and workflow progression throughout production.
+
+## Figure 5. GitHub Push History
+
+![Github History](Images/Github.png)
+
+*Source: Own Screenshot from GitHub Desktop, 2026.*
+
+Referenced in:
+- Section 3 – Development Process
+- Section 5 – Reflection
+
+---
+
+# Appendix F – Modular Player Controller Structure
+
+This appendix contains the folder structure used for the modular movement system and player controller states.
+
+## Figure 6. Player Controller Folder
+
+![Player Controller Scripts](Images/Modular_Movement.png)
+
+*Source: Own Screenshot from Unity, 2026.*
+
+Referenced in:
+- Section 3 – Development Process
+
+---
+
+# Appendix G – Weapon System Development
+
+This appendix shows the Scriptable Object setup used for the weapon system.
+
+## Figure 7. Scriptable Object Gun
+
+![Gun Scriptable Object](Images/Gun_Scriptable.png)
+
+*Source: Own Screenshot from Unity, 2026.*
+
+Referenced in:
+- Section 3 – Development Process
+- Section 4 – Feedback and Iteration
+
+---
+
+# Appendix H – Creature Animation and Movement
+
+This appendix contains a development video showing the enemy movement and animation system.
+
+## Figure 8. Creature Animation and Movement
+
+[![Creature Movement](https://img.youtube.com/vi/54p70t5DkOU/maxresdefault.jpg)](https://youtu.be/54p70t5DkOU)
+
+*Source: Own Video from Unity, 2026.*
+
+Referenced in:
+- Section 3 – Development Process
+
+---
+
+# Appendix I – Terrain Construction
+
+This appendix shows the Unity terrain tool used to construct the forest environment.
+
+## Figure 9. Terrain Tool
+
+![Terrain Tool](Images/Terrain_Tool.png)
+
+*Source: Own Screenshot from Unity, 2026.*
+
+Referenced in:
+- Section 3 – Development Process
+
+---
+
+# Appendix J – Player Movement Iteration
+
+This appendix contains a development video showing iteration and improvements to the player movement system.
+
+## Figure 10. Player Movement
+
+[![Enemy AI Development Video](https://img.youtube.com/vi/lwCh_zujytY/0.jpg)](https://youtu.be/lwCh_zujytY)
+
+*Source: Own Video from Unity, 2026.*
+
+Referenced in:
+- Section 4 – Feedback and Iteration
+
+---
+
+# Appendix K – Updated Weapon Script
+
+This appendix contains an updated version of the weapon system script showing improvements made during development.
+
+## Figure 11. Updated Gun Script
+
+```c#
+ private void Awake()
+    {
+        input = FindAnyObjectByType<InputReader>();
+        currentAmmo = gunData.magazineSize;
+
+        ChangeState(GunState.Idle);
+    }
+
+    private void Update()
+    {
+        Input();
+
+        Debug.DrawLine(playerCam.transform.position,playerCam.transform.position + playerCam.transform.forward * gunData.range, Color.red);
+    }
+
+    private void Input()
+    {
+        if (input.Reload && currentAmmo < gunData.magazineSize)
+        {
+            TryReload();
+            return;
+        }
+
+        if(input.Fire)
+        {
+            TryShoot();
+        }
+    }
+```
+
+*Source: Own code from Visual Studio, 2026.*
+
+Referenced in:
+- Section 4 – Feedback and Iteration
+
+---
+
+# Appendix L – GitHub Commit Example
+
+This appendix shows examples of GitHub commit descriptions documenting gameplay changes and technical iteration throughout development.
+
+## Figure 12. GitHub Commit Description
+
+![Github Commit Description](Images/Push_Example.png)
+
+*Source: Own Screenshot from GitHub, 2026.*
+
+Referenced in:
+- Section 5 – Reflection
