@@ -260,6 +260,12 @@ The project also lacked wider playtesting opportunities due to the prototype not
 
 GitHub commit history showed consistent progression and experimentation across gameplay systems, controller redesigns and environmental development. The project also showed the importance of modular workflows, realistic scoping and iterative problem solving during independent game development.
 
+## Figure 5. GitHub Push History
+
+![Github History](Images/Github.png)
+
+*Source: Own Screenshot from GitHub Desktop, 2026.*
+
 ## Figure 12. Github Commits
 
 ![Github Commit Description](Images/Push_Example.png)
