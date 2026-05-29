@@ -131,17 +131,41 @@ Planning during preproduction remained small compared to previous projects becau
 
 Development of the prototype was made using Unity 6.3 LTS alongside Visual Studio and GitHub version control. The project followed an iterative workflow where gameplay systems were first prototyped quickly before later refinement and restructuring. This approach followed common industry development practices where functionality is often prioritised during early production before later focusing on optimisation, scalability and polish.
 
+## Figure 5. Github Push History
+
+![Github Histrory](Images/Github.png)
+
+*Source: Own Screenshot from Github Desktop, 2026*
+
 The first main system implemented during development was the player movement controller. Early versions of the controller were built using a single script structure handling sprinting, crouching, jumping, gravity and camera movement. This approach allowed rapid prototyping and made it easier to test movement speed, environment scale and gameplay pacing during early development.
 
-However, as additional features and animation systems were introduced the original controller became increasingly difficult to manage and iterate upon. Multiple movement behaviours were being handled inside large If statements which made debugging and future expansion more difficult. The movement system was later redesigned using a modular state machine structure.
+However, as additional features were introduced the original controller became increasingly difficult to manage and iterate upon. Multiple movement behaviours were being handled inside large If statements which made debugging and future expansion more difficult. The movement system was later redesigned using a modular state machine structure.
 
 The state-machine movement system separated player movement behaviours into individual states including Idle State, Walk State, Sprint State, Jump State, Crouch State and Backward Movement State. Each movement state handled its own behaviour and transition conditions independently. This improved code readability, maintainability and scalability while also making debugging easier during development. The movement state system became one of the best technical aspects of the project because it showed a more industry standard programming structure compared to previous controllers I had created.
 
-Player feedback also directly influenced controller iteration. Early playtesting identified that the original movement speed felt too fast and reduced gameplay tension during exploration. Testers also noted that crouching did not significantly reduce player height, which weakened stealth and atmosphere. As a result, crouch scaling and movement speed values were adjusted to better support slower exploration and environmental tension. Another issue discovered through testing allowed the player to sprint while crouching due to overlapping movement conditions. This bug was later corrected to make sure crouching remained slower than sprinting.
+## Figure 6. Player Controller Folder
+
+![Player controller Scripts](Images/Modular_Movement.png)
+
+*Source: Own Screenshot from Unity, 2026*
+
+Player feedback also directly influenced controller iteration. Early playtesting identified that the original movement speed felt too fast and reduced gameplay tension during exploration. Testers also noted that crouching did not reduce player height enough which weakned atmosphere. As a result, crouch scaling and movement speed values were adjusted to better support slower exploration. Another issue discovered through testing allowed the player to sprint while crouching due to overlapping movement conditions. This bug was later corrected to make sure crouching remained slower than sprinting.
 
 The game combat systems were also developed during production. One of the gameplay features I was most proud of creating was the weapon system because I had never previously developed a functional gun mechanic independently. The gun system used Scriptable Objects and state management to handle firing behaviour and supported future scalability.
 
+## Figure 7. Sctiptable Object Gun
+
+![Gun scriptable Object](Images/Gun_Scriptable.png)
+
+*Source: Own screenshot from Unity, 2026*
+
 Enemy functionality and monster animation systems also showed technical learning throughout production. In previous group projects AI systems and animation systems had mainly been handled by other team members. Because of this implementing enemy movement and animation independently became one of the more challenging aspects of the project. Basic enemy navigation and animation transitions were implemented using Unity’s NavMesh system and animation controllers. Although the AI remained simple the system helped the gameplay atmosphere and narrative progression.
+
+## Figure 8. Creature animation and movement 
+
+[![Creature animation](https://img.youtu.be/54p70t5DkOU)](https://youtu.be/54p70t5DkOU)
+
+*Source: Own Video from Unity, 2026*
 
 The monster animation system also required technical adjustments because several third-party assets initially failed to function correctly within the version of Unity used during development. In particular, the creature materials and shaders were incompatible with the Universal Render Pipeline. To fix this issue materials were converted into URP-compatible complex lit shaders which fixed the textures and rendering.
 
